@@ -67,7 +67,7 @@ plt.ylabel("you can set y or x label like so")
 ```
 ![Histogram example](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_hist_1.png)
 
-### Varience
+### Variance
 
 Variance is a summary statistic intended to describe the variability or spread of a distribution.
 
