@@ -67,6 +67,25 @@ plt.ylabel("you can set y or x label like so")
 ```
 ![Histogram example](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_hist_1.png)
 
+### Varience
 
+Variance is a summary statistic intended to describe the variability or spread of a distribution.
+
+### Effect size
+
+Summary statistic intended to describe size of an effect. Also known as [Cohen's d](https://stackoverflow.com/questions/21532471/how-to-calculate-cohens-d-in-python)
+
+```python
+def CohenEffectSize(group1, group2):
+    diff = group1.mean() - group2.mean()
+    var1 = group1.var()
+    var2 = group2.var()
+    n1, n2 = len(group1), len(group2)
+    pooled_var = (n1 * var1 + n2 * var2) / (n1 + n2)
+    d = diff / math.sqrt(pooled_var)
+    return d
+
+CohenEffectSize(df.some_column, df.other_column) # -1.250605635267294
+```
 
 
