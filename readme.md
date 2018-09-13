@@ -42,3 +42,31 @@ pd.read_clipboard() # Takes the contents of your clipboard and passes it to read
 pd.DataFrame(dict) # From a dict, keys for columns names, values for data as lists
 ```
 
+### Data used in examples
+```
+df = pd.DataFrame()
+df['some_column'] = [random.gauss(-4,4) for _ in range(10000)]
+df['other_column'] = [random.gauss(1,4) for _ in range(10000)]
+```
+
+## Distributions
+
+### Histograms
+
+Graph thatshows frequency of each value
+
+```python
+# fastest way to show
+df.some_column.hist() 
+# Customizable way to show
+plt.hist([df.some_column, df.other_column], # you can supply one value
+			bins=30,
+			label=['some column', 'other column'],
+			color=['purple','g'])
+plt.ylabel("you can set y or x label like so")
+```
+![Histogram example](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_hist_1.png)
+
+
+
+
