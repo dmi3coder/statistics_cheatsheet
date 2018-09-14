@@ -14,6 +14,7 @@ You can use this setup script to cover most of the fast-to-hack problems
 from __future__ import print_function
 
 import math
+import random
 
 from IPython import display
 from matplotlib import cm
@@ -26,7 +27,7 @@ pd.options.display.max_rows = 100
 pd.set_option('display.expand_frame_repr', False)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
-pd.options.display.float_format = '{:.1f}'.format
+pd.options.display.float_format = '{:.5f}'.format
 ```
 
 ### Import data
@@ -43,7 +44,7 @@ pd.DataFrame(dict) # From a dict, keys for columns names, values for data as lis
 ```
 
 ### Data used in examples
-```
+```python
 df = pd.DataFrame()
 df['some_column'] = [random.gauss(-4,4) for _ in range(10000)]
 df['other_column'] = [random.gauss(1,4) for _ in range(10000)]
@@ -67,7 +68,7 @@ plt.ylabel("you can set y or x label like so")
 ```
 ![Histogram example](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_hist_1.png)
 
-### Variance
+#### Variance
 
 Variance is a summary statistic intended to describe the variability or spread of a distribution.
 
@@ -87,5 +88,24 @@ def CohenEffectSize(group1, group2):
 
 CohenEffectSize(df.some_column, df.other_column) # -1.250605635267294
 ```
+### Probability mass function (PMF)
+
+Representation of a distribution as a function that maps from values to probabilities.
+
+```python
+pmf = df['some_column'].value_counts().sort_index() / len(df['some_column'])
+pmf.plot(kind='bar')
+```
+
+#### Bin values
+
+If you'll try to execute code above, you'll get pmf of each element as 1. Good idea to bin this values
 
 
+```python
+df['some_column_pmf'] = pd.cut(df['some_column'], [-20,-10,-5,0,5,10,20])
+pmf = df['some_column_pmf'].value_counts().sort_index() / len(df['some_column_pmf'])
+pmf.plot(kind='bar')
+```
+
+![Pmf bin image](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_pmf_bin1.png)
