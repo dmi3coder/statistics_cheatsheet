@@ -109,3 +109,29 @@ pmf.plot(kind='bar')
 ```
 
 ![Pmf bin image](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_pmf_bin1.png)
+
+### Cumulative distribution function (CDF)
+
+A function that maps from values to their cumulative probabilities.
+
+```python
+def EvalCdf(sample, x):
+    count = 0.0
+    for value in sample:
+        if value <= x:
+            count += 1
+    prob = count / len(sample)
+    return prob
+    
+EvalCdf(df['some_column'], 5.0)
+```
+
+### Compute CDF hist
+
+```python
+#fastest way
+df['some_column'].hist(cumulative=True)
+```
+
+![Cdf image](https://github.com/dmitrychaban/statistics_cheatsheet/raw/master/images/dist_cdf_1.png)
+
